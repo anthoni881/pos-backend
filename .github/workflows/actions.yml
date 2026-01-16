@@ -1,0 +1,16 @@
+name: Toni pos-backend Deploy
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          curl https://api.lyrid.io/client/dl/linux --output /usr/local/bin/lc && chmod +x /usr/local/bin/lc
+          lc config add --config lyrid_github --key ${{secrets.LYRID_API_KEY}} --secret ${{secrets.LYRID_API_SECRET}}
+          lc code submit -d
