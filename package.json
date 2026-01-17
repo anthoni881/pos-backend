@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cp ./environment/staging.env .env && npx forever -c 'nodemon --exitcrash' server.mjs",
+    "start": "fastify start -l info server.mjs",
     "build": "nodemon build/server.mjs",
     "start-prod": "node server.mjs",
     "deploy-staging": "cp ./environment/staging.env .env && lc code submit",
