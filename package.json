@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cp ./environment/staging.env .env && npx forever -c 'nodemon --exitcrash' server.mjs",
     "build": "nodemon build/server.mjs",
-    "start-temp": "nodemon --experimental-modules server.mjs",
+    "start-prod": "node server.mjs",
     "deploy-staging": "cp ./environment/staging.env .env && lc code submit",
     "deploy-prod": "cp ./environment/prod.env .env && lc code submit"
   },
