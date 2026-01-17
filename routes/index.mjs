@@ -8,6 +8,7 @@ import { deleteStock } from "../controllers/stok/deleteStock.mjs";
 import { editStok } from "../controllers/stok/editStok.mjs";
 import { getListBelanja } from "../controllers/stok/getListBelanja.mjs";
 import { getStok } from "../controllers/stok/getStok.mjs";
+import { printReceipt } from "../controllers/print/print.mjs";
 
 export const routes = async (fastify, options) => {
   fastify.get("/login", login);
