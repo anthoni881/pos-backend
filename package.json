@@ -19,8 +19,6 @@
     "@fastify/jwt": "^10.0.0",
     "@fastify/mongodb": "^9.0.2",
     "dotenv": "^17.2.3",
-    "escpos": "^3.0.0-alpha.6",
-    "escpos-usb": "^3.0.0-alpha.4",
     "express": "^5.2.1",
     "fastify": "^5.6.2",
     "moment": "^2.30.1",
