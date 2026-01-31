@@ -50,6 +50,9 @@ const authRoutes = {
   "/getLastOrder": true,
   "/getFinalisasiTransaksi": true,
   "/bulkUploadStock": true,
+  "/getListUser": true,
+  "/addNewUser": true,
+  "/deleteUser": true,
 };
 
 server.addHook("onRequest", async (req, res) => {
