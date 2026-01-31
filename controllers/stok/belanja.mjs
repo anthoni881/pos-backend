@@ -34,30 +34,43 @@ export async function belanja(req, res) {
         toko: checkKode.toko,
         timeStamp: moment().utcOffset("+0700").format(),
       });
+      res.send({
+        code: 200,
+        message: "Data Belanja Berhasil Ditambah!",
+      });
     } else {
-      await collectionListStok.insertOne({
-        id: uuidv4(),
-        name: req.body.name,
-        kode: req.body.kode,
-        stock: req.body.jumlah,
-        price: req.body.harga,
-        toko: req.body.toko,
+      const checkKode = await collectionListStok.findOne({
+        kode: { $regex: req.body.kode.toString(), $options: "i" },
       });
-      await collectionListBelanja.insertOne({
-        id: uuidv4(),
-        name: req.body.name,
-        kode: req.body.kode,
-        qty: req.body.jumlah,
-        price: req.body.harga,
-        toko: req.body.toko,
-        timeStamp: moment().utcOffset("+0700").format(),
-      });
+      if (!checkKode) {
+        await collectionListStok.insertOne({
+          id: uuidv4(),
+          name: req.body.name,
+          kode: req.body.kode,
+          stock: req.body.jumlah,
+          price: req.body.harga,
+          toko: req.body.toko,
+        });
+        await collectionListBelanja.insertOne({
+          id: uuidv4(),
+          name: req.body.name,
+          kode: req.body.kode,
+          qty: req.body.jumlah,
+          price: req.body.harga,
+          toko: req.body.toko,
+          timeStamp: moment().utcOffset("+0700").format(),
+        });
+        res.send({
+          code: 200,
+          message: "Data Belanja Berhasil Ditambah!",
+        });
+      } else {
+        res.send({
+          code: 409,
+          message: "Data Barcode Sudah ada!",
+        });
+      }
     }
-
-    res.send({
-      code: 200,
-      message: "Data Belanja Berhasil Ditambah!",
-    });
   } catch (error) {
     console.log(error);
     res.send({ code: 404, message: "Invalid Token" });
