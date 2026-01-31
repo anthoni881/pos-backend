@@ -11,6 +11,9 @@ import { deleteStock } from "../controllers/stok/deleteStock.mjs";
 import { editStok } from "../controllers/stok/editStok.mjs";
 import { getListBelanja } from "../controllers/stok/getListBelanja.mjs";
 import { getStok } from "../controllers/stok/getStok.mjs";
+import { addNewUser } from "../controllers/user/addNewUser.mjs";
+import { deleteUser } from "../controllers/user/deleteUser.mjs";
+import { getListUser } from "../controllers/user/getListUser.mjs";
 import { version } from "../controllers/version.mjs";
 
 export const routes = async (fastify, options) => {
@@ -28,4 +31,7 @@ export const routes = async (fastify, options) => {
   fastify.post("/getLastOrder", getLastOrder);
   fastify.post("/getFinalisasiTransaksi", getFinalisasiTransaksi);
   fastify.post("/bulkUploadStock", bulkUploadStock);
+  fastify.post("/getListUser", getListUser);
+  fastify.post("/addNewUser", addNewUser);
+  fastify.post("/deleteUser", deleteUser);
 };
