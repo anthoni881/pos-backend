@@ -6,7 +6,9 @@ export async function getListBelanja(req, res) {
   try {
     await req.jwtVerify();
 
-    const data = await collectionListBelanja.find().toArray();
+    const data = await collectionListBelanja
+      .find({ timeStamp: { $regex: req.body.filterDate } })
+      .toArray();
 
     res.send({
       code: 200,

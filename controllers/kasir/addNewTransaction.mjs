@@ -2,6 +2,9 @@ import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 
 export async function addNewTransaction(req, res) {
+  const collectionUserList = this.mongo.client
+    .db("others")
+    .collection("userList");
   const collectionListStok = this.mongo.client.db("others").collection("stok");
   const collectionListTransaction = this.mongo.client
     .db("others")
@@ -17,6 +20,15 @@ export async function addNewTransaction(req, res) {
       data.forEach(async (element) => {
         const findStock = await collectionListStok.findOne({ id: element.id });
         let calculate = findStock.stock - element.qty;
+
+        await collectionUserList.findOneAndUpdate(
+          { id: element.userId },
+          {
+            $set: {
+              transactionId: transactionId,
+            },
+          }
+        );
 
         await collectionListStok.findOneAndUpdate(
           { id: element.id },

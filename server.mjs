@@ -47,6 +47,9 @@ const authRoutes = {
   "/deleteStock": true,
   "/belanja": true,
   "/getListBelanja": true,
+  "/getLastOrder": true,
+  "/getFinalisasiTransaksi": true,
+  "/bulkUploadStock": true,
 };
 
 server.addHook("onRequest", async (req, res) => {
