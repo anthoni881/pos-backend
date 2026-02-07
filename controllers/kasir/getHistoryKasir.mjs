@@ -2,6 +2,9 @@ export async function getHistoryKasir(req, res) {
   const collectionListTransaction = this.mongo.client
     .db("others")
     .collection("transaction");
+  const collectionListUser = this.mongo.client
+    .db("others")
+    .collection("userList");
 
   try {
     await req.jwtVerify();
