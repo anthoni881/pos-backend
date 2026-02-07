@@ -4,7 +4,10 @@ export async function deleteStock(req, res) {
   try {
     await req.jwtVerify();
 
-    await collectionListStok.findOneAndDelete({ id: req.body.id });
+    await collectionListStok.findOneAndDelete({
+      kode: req.body.kode,
+      name: req.body.name,
+    });
 
     res.send({
       code: 200,
