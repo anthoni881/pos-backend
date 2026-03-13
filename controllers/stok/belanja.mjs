@@ -12,7 +12,7 @@ export async function belanja(req, res) {
 
     if (req.body.statusBarang === "ada") {
       const checkKode = await collectionListStok.findOne({
-        kode: { $regex: req.body.name.value, $options: "i" },
+        kode: req.body.name.value,
       });
       let calculate = checkKode.stock + req.body.jumlah;
 
