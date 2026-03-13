@@ -7,7 +7,7 @@ export async function addNewStok(req, res) {
     await req.jwtVerify();
 
     const checkKode = await collectionListStok.findOne({
-      kode: { $regex: req.body.kode, $options: "i" },
+      kode: req.body.kode,
     });
 
     if (!checkKode) {
